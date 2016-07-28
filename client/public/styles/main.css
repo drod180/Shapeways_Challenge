@@ -1,0 +1,17 @@
+html, body, ul, ol, h1, h2, h3, img, input {
+  margin: 0;
+  padding: 0; }
+
+.avatar {
+  float: left;
+  width: 280px;
+  height: 280px; }
+
+.input-file {
+  background: blue; }
+
+h2 {
+  background: red; }
+
+h3 {
+  background: green; }

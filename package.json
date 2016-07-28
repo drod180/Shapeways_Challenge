@@ -1,0 +1,28 @@
+{
+  "name": "shapeways_challenge",
+  "version": "1.0.0",
+  "description": "shapeway coding challenge",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "node-sass": "^3.8.0",
+    "nodemon": "^1.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss client/scss/main.scss client/public/styles/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drod180/Shapeways_Challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drod180/Shapeways_Challenge/issues"
+  },
+  "homepage": "https://github.com/drod180/Shapeways_Challenge#readme"
+}

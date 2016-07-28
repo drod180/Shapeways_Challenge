@@ -57,7 +57,7 @@ User.prototype._buildUserAvatar = function () {
   var input = document.createElement("input");
   this.parent.appendChild(input);
   input.type = "file";
-  input.classList.add("input-file");
+  input.classList.add("input-avatar");
   this._addImageEditor(userAvatarEl, input);
 }
 
