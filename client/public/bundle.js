@@ -109,7 +109,7 @@
 	User.prototype._buildUserAvatar = function () {
 	  var userAvatarEl = document.createElement("img");
 	  this.parent.appendChild(userAvatarEl);
-	  userAvatarEl.src = "data:image/png;base64," + this.userAvatar;
+	  userAvatarEl.src = this.userAvatar;
 	  userAvatarEl.classList.add("avatar");
 
 	  var input = document.createElement("input");
@@ -122,7 +122,7 @@
 	User.prototype._buildUserHandle = function () {
 	  var userHandleEl = document.createElement("h3");
 	  this.parent.appendChild(userHandleEl);
-	  userHandleEl.innerHTML = this.userEmail;
+	  userHandleEl.innerHTML = this.userHandle;
 	  userHandleEl.classList.add("handle");
 	  userHandleEl.setAttribute("contentEditable", true);
 	  this._addInlineTextEdit(userHandleEl);
