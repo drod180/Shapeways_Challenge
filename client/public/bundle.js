@@ -133,7 +133,7 @@
 	  container.appendChild(input);
 
 	  userAvatarImgEl.addEventListener("click", function () {
-	    input.classList.remove("hide");
+	    input.classList.toggle("hide");
 	  });
 
 	}

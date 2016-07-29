@@ -75,7 +75,7 @@ User.prototype._buildUserAvatar = function (container) {
   container.appendChild(input);
 
   userAvatarImgEl.addEventListener("click", function () {
-    input.classList.remove("hide");
+    input.classList.toggle("hide");
   });
 
 }
