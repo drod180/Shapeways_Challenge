@@ -1,4 +1,13 @@
 // _user.scss
+$border-color: #000;
+$primary-text-color: #000;
+
+.user-badge {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  box-shadow: 0 0 5px black;
+  padding: 20px 10px;
+}
 
 .avatar {
   float: left;
@@ -6,14 +15,37 @@
   height: 280px;
 }
 
-.input-file {
-  background: blue;
+.avatar-img {
+  width: 238px;
+  height: 238px;
+}
+
+
+.input-avatar.hide {
+  display: none;
+}
+
+.follow-icon:before {
+  font-family: FontAwesome;
+  content: "\f055";
+}
+
+.email-icon:before {
+  font-family: FontAwesome;
+  content: "\f0e0";
+}
+
+.handle-icon:before {
+  font-family: FontAwesome;
+  content: "\f099";
+}
+
+.detail-item {
+  display: flex;
 }
 
 h2 {
-  background: red;
 }
 
 h3 {
-  background: green;
 }

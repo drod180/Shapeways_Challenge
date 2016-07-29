@@ -1,5 +1,8 @@
-function User(parent) {
-  this.parent = parent || document.createElement("div");
+function User(root) {
+  this.parent = document.createElement("div");
+  root.appendChild(this.parent);
+  this.parent.classList.add("user-badge");
+
   this.userName = localStorage.getItem("SWC_userName") || "Username";
   this.userEmail = localStorage.getItem("SWC_userEmail") || "Contact";
   this.userAvatar = localStorage.getItem("SWC_userAvatar") || "https://api.adorable.io/avatars/285/default@adorable.io.png";
@@ -10,8 +13,6 @@ function User(parent) {
 User.prototype._addInlineTextEdit = function (element) {
   element.addEventListener("input", function () {
     this.setData(element.classList[0], element.innerHTML);
-    console.log(element.classList[0]);
-    console.log(element.innerHTML);
   }.bind(this));
 }
 
@@ -30,50 +31,84 @@ User.prototype._addImageEditor = function (image, input) {
   });
 }
 
-User.prototype._buildUserName = function () {
+User.prototype._buildUserName = function (container) {
   var userNameEl = document.createElement("h2");
-  this.parent.appendChild(userNameEl);
+  container.appendChild(userNameEl);
   userNameEl.innerHTML = this.userName;
   userNameEl.classList.add("username");
   userNameEl.setAttribute("contentEditable", true);
   this._addInlineTextEdit(userNameEl);
 }
 
-User.prototype._buildUserEmail = function () {
-  var userEmailEl = document.createElement("h3");
-  this.parent.appendChild(userEmailEl);
-  userEmailEl.innerHTML = this.userEmail;
-  userEmailEl.classList.add("email");
-  userEmailEl.setAttribute("contentEditable", true);
-  this._addInlineTextEdit(userEmailEl);
+User.prototype._buildUserEmail = function (container) {
+  var userEmailEl = document.createElement("div");
+  userEmailEl.classList.add("detail-item");
+  container.appendChild(userEmailEl);
+
+  var emailIconEl = document.createElement("span");
+  emailIconEl.classList.add("email-icon");
+  userEmailEl.appendChild(emailIconEl);
+
+  var userEmailHeaderEl = document.createElement("h3");
+  userEmailEl.appendChild(userEmailHeaderEl);
+  userEmailHeaderEl.innerHTML = this.userEmail;
+  userEmailHeaderEl.classList.add("email");
+  userEmailHeaderEl.setAttribute("contentEditable", true);
+  this._addInlineTextEdit(userEmailHeaderEl);
 }
 
-User.prototype._buildUserAvatar = function () {
-  var userAvatarEl = document.createElement("img");
-  this.parent.appendChild(userAvatarEl);
-  userAvatarEl.src = this.userAvatar;
-  userAvatarEl.classList.add("avatar");
+User.prototype._buildUserAvatar = function (container) {
+  var userAvatarImgEl = document.createElement("img");
+  userAvatarImgEl.src = this.userAvatar;
+  userAvatarImgEl.classList.add("avatar-img");
+  container.appendChild(userAvatarImgEl);
 
   var input = document.createElement("input");
-  this.parent.appendChild(input);
+  container.appendChild(input);
   input.type = "file";
   input.classList.add("input-avatar");
-  this._addImageEditor(userAvatarEl, input);
+  input.classList.add("hide");
+  this._addImageEditor(userAvatarImgEl, input);
+
+  container.appendChild(userAvatarImgEl);
+  container.appendChild(input);
+
+  userAvatarImgEl.addEventListener("click", function () {
+    input.classList.remove("hide");
+  });
+
 }
 
-User.prototype._buildUserHandle = function () {
-  var userHandleEl = document.createElement("h3");
-  this.parent.appendChild(userHandleEl);
-  userHandleEl.innerHTML = this.userHandle;
-  userHandleEl.classList.add("handle");
-  userHandleEl.setAttribute("contentEditable", true);
-  this._addInlineTextEdit(userHandleEl);
+
+User.prototype._buildUserHandle = function (container) {
+  var userHandleEl = document.createElement("div");
+  userHandleEl.classList.add("detail-item");
+  container.appendChild(userHandleEl);
+
+  var handleIconEl = document.createElement("span");
+  handleIconEl.classList.add("handle-icon");
+  userHandleEl.appendChild(handleIconEl);
+
+  var userHandleHeaderEl = document.createElement("h3");
+  userHandleEl.appendChild(userHandleHeaderEl);
+  userHandleHeaderEl.innerHTML = this.userHandle;
+  userHandleHeaderEl.classList.add("handle");
+  userHandleHeaderEl.setAttribute("contentEditable", true);
+  this._addInlineTextEdit(userHandleHeaderEl);
 }
 
-User.prototype._buildFollowButton = function () {
-    var followButtonEl = document.createElement("h3");
-    this.parent.appendChild(followButtonEl);
-    followButtonEl.innerHTML = "Follow";
+User.prototype._buildFollowButton = function (container) {
+  var followButtonEl = document.createElement("div");
+  followButtonEl.classList.add("detail-item");
+  container.appendChild(followButtonEl);
+
+  var followIconEl = document.createElement("span");
+  followIconEl.classList.add("follow-icon");
+  followButtonEl.appendChild(followIconEl);
+
+  var followButtonHeaderEl = document.createElement("h3");
+  followButtonEl.appendChild(followButtonHeaderEl);
+  followButtonHeaderEl.innerHTML = "Follow";
 }
 
 User.prototype._setUserName = function (username) {
@@ -97,11 +132,18 @@ User.prototype._setHandle = function (handle) {
 }
 
 User.prototype.build = function () {
-  this._buildUserAvatar();
-  this._buildUserName();
-  this._buildUserEmail();
-  this._buildFollowButton();
-  this._buildUserHandle();
+  var userAvatarEl = document.createElement("div");
+  this.parent.appendChild(userAvatarEl);
+  userAvatarEl.classList.add("avatar");
+  this._buildUserAvatar(userAvatarEl);
+
+  var userDetailsEl = document.createElement("div");
+  this.parent.appendChild(userDetailsEl);
+  userDetailsEl.classList.add("details");
+  this._buildUserName(userDetailsEl);
+  this._buildUserEmail(userDetailsEl);
+  this._buildFollowButton(userDetailsEl);
+  this._buildUserHandle(userDetailsEl);
 }
 
 User.prototype.setData = function (dataElement, data) {
