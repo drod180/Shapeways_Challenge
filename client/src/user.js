@@ -2,10 +2,11 @@ function User(root) {
   this.parent = document.createElement("div");
   root.appendChild(this.parent);
   this.parent.classList.add("user-badge");
+  this.parent.classList.add("group");
 
   this.userName = localStorage.getItem("SWC_userName") || "Username";
   this.userEmail = localStorage.getItem("SWC_userEmail") || "Contact";
-  this.userAvatar = localStorage.getItem("SWC_userAvatar") || "https://api.adorable.io/avatars/285/default@adorable.io.png";
+  this.userAvatar = localStorage.getItem("SWC_userAvatar") || "https://api.adorable.io/avatars/180/default@adorable.io.png";
   this.userHandle = localStorage.getItem("SWC_userHandle") || "@twitter-handle"
   this.build();
 }
@@ -107,6 +108,7 @@ User.prototype._buildFollowButton = function (container) {
   followButtonEl.appendChild(followIconEl);
 
   var followButtonHeaderEl = document.createElement("h3");
+  followButtonHeaderEl.classList.add("follow-header");
   followButtonEl.appendChild(followButtonHeaderEl);
   followButtonHeaderEl.innerHTML = "Follow";
 }

@@ -2,35 +2,70 @@ html, body, ul, ol, h1, h2, h3, img, input {
   margin: 0;
   padding: 0; }
 
+.group:after {
+  content: " ";
+  display: block;
+  clear: both; }
+
 .user-badge {
-  border: 1px solid #000;
+  display: flex;
+  border: 2px solid #E1E1E1;
   border-radius: 10px;
-  box-shadow: 0 0 5px black;
-  padding: 20px 10px; }
+  box-shadow: 0 0 5px #E1E1E1;
+  padding: 45px 30px;
+  width: 540px; }
 
 .avatar {
-  float: left;
-  width: 280px;
-  height: 280px; }
+  width: 180px;
+  height: 180px;
+  padding: 0 25px 0 0; }
 
 .avatar-img {
-  width: 238px;
-  height: 238px; }
+  position: relative;
+  border: 2px solid #E1E1E1;
+  border-radius: 5px;
+  width: 180px;
+  height: 180px;
+  cursor: pointer; }
+
+.input-avatar {
+  position: absolute; }
 
 .input-avatar.hide {
   display: none; }
 
 .follow-icon:before {
   font-family: FontAwesome;
+  font-size: 28px;
   content: "\f055"; }
 
 .email-icon:before {
   font-family: FontAwesome;
+  font-size: 28px;
   content: "\f0e0"; }
 
 .handle-icon:before {
   font-family: FontAwesome;
+  font-size: 28px;
   content: "\f099"; }
 
 .detail-item {
   display: flex; }
+
+h2 {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  height: 36px;
+  margin: 5px 0 20px 0;
+  color: #00A2EC; }
+
+h3 {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 28px;
+  margin: 0 0 10px 10px;
+  color: #173644; }
+
+.follow-header {
+  cursor: pointer; }
