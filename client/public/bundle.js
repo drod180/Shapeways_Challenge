@@ -56,6 +56,16 @@
 /* 1 */
 /***/ function(module, exports) {
 
+	/*User component
+	  Bulid a user component which contains an avatar image and user details
+	  Stores data in localStorage.
+
+	  localStorage data -
+	  SWC_userName - Username
+	  SWC_userEmail - Email
+	  SWC_userAvatar - Avatar image data URI
+	  SWC_userHandle - Twitter Handle
+	*/
 	function User(root) {
 	  this.parent = document.createElement("div");
 	  root.appendChild(this.parent);
@@ -69,12 +79,15 @@
 	  this.build();
 	}
 
+	// Allows elements to be inline editable and save to local storage
 	User.prototype._addInlineTextEdit = function (element) {
+	  element.setAttribute("contentEditable", true);
 	  element.addEventListener("input", function () {
 	    this.setData(element.classList[0], element.innerHTML);
 	  }.bind(this));
 	}
 
+	//Reads file and uploads it as the avatar image on change
 	User.prototype._addImageEditor = function (image, input) {
 	  input.addEventListener('change', function() {
 	    var file = this.files[0];
@@ -90,15 +103,18 @@
 	  });
 	}
 
+	//Methods for building different sub components
+
+	//Username
 	User.prototype._buildUserName = function (container) {
 	  var userNameEl = document.createElement("h2");
 	  container.appendChild(userNameEl);
 	  userNameEl.innerHTML = this.userName;
 	  userNameEl.classList.add("username");
-	  userNameEl.setAttribute("contentEditable", true);
 	  this._addInlineTextEdit(userNameEl);
 	}
 
+	//Email address
 	User.prototype._buildUserEmail = function (container) {
 	  var userEmailEl = document.createElement("div");
 	  userEmailEl.classList.add("detail-item");
@@ -112,10 +128,10 @@
 	  userEmailEl.appendChild(userEmailHeaderEl);
 	  userEmailHeaderEl.innerHTML = this.userEmail;
 	  userEmailHeaderEl.classList.add("email");
-	  userEmailHeaderEl.setAttribute("contentEditable", true);
 	  this._addInlineTextEdit(userEmailHeaderEl);
 	}
 
+	//Avatar
 	User.prototype._buildUserAvatar = function (container) {
 	  var userAvatarImgEl = document.createElement("img");
 	  userAvatarImgEl.src = this.userAvatar;
@@ -138,7 +154,7 @@
 
 	}
 
-
+	//Twitter Handle
 	User.prototype._buildUserHandle = function (container) {
 	  var userHandleEl = document.createElement("div");
 	  userHandleEl.classList.add("detail-item");
@@ -152,10 +168,10 @@
 	  userHandleEl.appendChild(userHandleHeaderEl);
 	  userHandleHeaderEl.innerHTML = this.userHandle;
 	  userHandleHeaderEl.classList.add("handle");
-	  userHandleHeaderEl.setAttribute("contentEditable", true);
 	  this._addInlineTextEdit(userHandleHeaderEl);
 	}
 
+	//Follow button
 	User.prototype._buildFollowButton = function (container) {
 	  var followButtonEl = document.createElement("div");
 	  followButtonEl.classList.add("detail-item");
@@ -171,26 +187,7 @@
 	  followButtonHeaderEl.innerHTML = "Follow";
 	}
 
-	User.prototype._setUserName = function (username) {
-	  this.userName = username;
-	  localStorage.setItem("SWC_userName", username);
-	}
-
-	User.prototype._setEmailAddress = function (email) {
-	  this.userEmail = email;
-	  localStorage.setItem("SWC_userEmail", email);
-	}
-
-	User.prototype._setAvatar = function (avatar) {
-	  this.userAvatar = avatar;
-	  localStorage.setItem("SWC_userAvatar", avatar);
-	}
-
-	User.prototype._setHandle = function (handle) {
-	  this.userHandle = handle;
-	  localStorage.setItem("SWC_userHandle", handle);
-	}
-
+	//Construct the user badge avatar and details
 	User.prototype.build = function () {
 	  var userAvatarEl = document.createElement("div");
 	  this.parent.appendChild(userAvatarEl);
@@ -206,19 +203,24 @@
 	  this._buildUserHandle(userDetailsEl);
 	}
 
+	//Save data locally and to local storage
 	User.prototype.setData = function (dataElement, data) {
 	  switch(dataElement) {
 	    case "username":
-	      this._setUserName(data);
+	      this.userName = data;
+	      localStorage.setItem("SWC_userName", data);
 	      break;
 	    case "email":
-	      this._setEmailAddress(data);
+	      this.userEmail = data;
+	      localStorage.setItem("SWC_userEmail", data);
 	      break;
 	    case "avatar":
-	      this._setAvatar(data);
+	      this.userAvatar = data;
+	      localStorage.setItem("SWC_userAvatar", data);
 	      break;
 	    case "handle":
-	      this._setHandle(data);
+	      this.userHandle = data;
+	      localStorage.setItem("SWC_userHandle", data);
 	      break;
 	    default:
 	      break;

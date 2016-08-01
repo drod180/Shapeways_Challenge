@@ -1,8 +1,12 @@
+var path = require('path');
 module.exports = {
-  context: __dirname + "/src",
-  entry: "app.js",
+  context: path.resolve(__dirname + "/client/src"),
+  entry: "./app.js",
   output: {
     path: __dirname + "/client/public",
     filename: "bundle.js"
+  },
+  resolve: {
+    extensions: ['', '.js']
   }
 }

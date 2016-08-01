@@ -2,6 +2,7 @@
 $border-color: #E1E1E1;
 $primary-text-color: #173644;
 
+//Main component div
 .user-badge {
   display: flex;
   border: 2px solid $border-color;
@@ -11,12 +12,14 @@ $primary-text-color: #173644;
   width: 540px;
 }
 
+//Div containing img and file input
 .avatar {
   width: 180px;
   height: 180px;
   padding: 0 25px 0 0;
 }
 
+//avatar image
 .avatar-img {
   position: relative;
   border: 2px solid $border-color;
@@ -26,6 +29,7 @@ $primary-text-color: #173644;
   cursor: pointer;
 }
 
+//avatar file iput
 .input-avatar {
   position: absolute;
 }
@@ -34,6 +38,7 @@ $primary-text-color: #173644;
   display: none;
 }
 
+//icons for user details
 .follow-icon:before {
   font-family: FontAwesome;
   font-size: 28px;
@@ -52,10 +57,12 @@ $primary-text-color: #173644;
   content: "\f099";
 }
 
+//Detail items
 .detail-item {
   display: flex;
 }
 
+//Detail items text
 h2 {
   font-family: sans-serif;
   font-weight: bold;
@@ -73,6 +80,7 @@ h3 {
   color: $primary-text-color;
 }
 
+//Follow detail - eventually will be an anchor
 .follow-header {
   cursor: pointer;
 }
